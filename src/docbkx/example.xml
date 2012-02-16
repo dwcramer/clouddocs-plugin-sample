@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+        <!-- Some useful entities borrowed from HTML -->
+        <!ENTITY ndash  "&#x2013;">
+        <!ENTITY mdash  "&#x2014;">
+        <!ENTITY hellip "&#x2026;">
+
+        <!-- Useful for describing APIs -->
+        <!ENTITY GET    '<command xmlns="http://docbook.org/ns/docbook">GET</command>'>
+        <!ENTITY PUT    '<command xmlns="http://docbook.org/ns/docbook">PUT</command>'>
+        <!ENTITY POST   '<command xmlns="http://docbook.org/ns/docbook">POST</command>'>
+        <!ENTITY DELETE '<command xmlns="http://docbook.org/ns/docbook">DELETE</command>'>
+
+]>
+  <book xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml"
+  version="5.0" xml:id="example-foo" status="DRAFT">
+
+  <title>Cloud Foo™ Developer Guide</title>
+  <info>
+    <author>
+      <personname>
+        <firstname/>
+        <surname/>
+      </personname>
+      <affiliation>
+        <orgname>Rackspace Cloud</orgname>
+      </affiliation>
+    </author>
+    <othercredit class="other">
+      <personname></personname>
+      <email></email>
+    </othercredit>
+<!--    <extension name="Block Storge Extension"
+      namespace="http://docs.openstack.org/servers/api/ext/volumes/v1.0"
+      alias="OS-BS" updated="2011-11-06T00:00:00Z">
+      <description>
+        The extension adds block storage capabilites
+        to the compute API.
+      </description>
+      <atom:link rel="describedby" type="application/pdf"
+        href="http://docs.rackspacecloud.com/servers/api/ext/os-bs.pdf"/>
+      <atom:link rel="describedby" type="application/vnd.sun.wadl+xml"
+        href="http://docs.rackspacecloud.com/servers/api/ext/os-bs/os-bs.wadl"/>
+      <atom:link rel="describedby" type="application/xml"
+        href="http://docs.rackspacecloud.com/servers/api/ext/os-bs/api.xsd"/>
+    </extension>-->
+    
+    <copyright>
+      <year>2009</year>
+      <year>2010</year>
+      <year>2011</year>
+      <holder>Rackspace US, Inc.</holder>
+    </copyright>
+    <releaseinfo>API v1.0</releaseinfo>
+    <productname>Cloud Foo™</productname>
+    <!-- <pubdate>2011-02-15</pubdate> -->
+    <pubdate>2011-03-01</pubdate>
+    <revhistory>
+
+      <revision>
+        <date>2011-03-01</date>
+        <revdescription>
+          <para>&GET; Ipsum lorem. adslkjf dipiscing elit. Etiam eros ipsum, tempor ut laoreet nec,
+            adipiscing vel eros. Integer sit amet nibh iaculis sapien sagittis blandit. Quisque vel
+            lectus felis, vel congue lorem. Pellentesque vitae elit id sem faucibus ornare. Ut
+            dictum dapibus quam, in scelerisque quam tempus sit amet.
+              <glossterm>API</glossterm>
+            <itemizedlist spacing="compact">
+              <listitem>
+                <para>Lorem ipsume</para>
+              </listitem>
+              <listitem>
+                <para>Dolor sit amet</para>
+              </listitem>
+            </itemizedlist></para>
+        </revdescription>
+      </revision>
+      <revision>
+        <date>2011-02-02</date>
+        <revdescription>
+          <para>Blah. adslkjf dipiscing elit. Etiam eros ipsum, tempor ut laoreet nec, adipiscing
+            vel eros. Integer sit amet nibh iaculis sapien sagittis blandit. Quisque vel lectus
+            felis, vel congue lorem. Pellentesque vitae elit id sem faucibus ornare. Ut dictum
+            dapibus quam, in scelerisque quam tempus sit amet. Quisasdflkj</para>
+        </revdescription>
+      </revision>
+      <revision>
+        <date>2011-01-01</date>
+        <revdescription>
+          <para>Ipsum lorem. adslkjf dipiscing elit. Etiam eros ipsum, tempor ut laoreet nec,
+            adipiscing vel eros. Integer sit amet nibh iaculis sapien sagittis blandit. Quisque vel
+            lectus felis, vel congue lorem. Pellentesque vitae elit id sem faucibus ornare. Ut
+            dictum dapibus quam, in scelerisque quam tempus sit amet. Quisasdflkj
+            <itemizedlist spacing="compact">
+              <listitem>
+                <para>Lorem ipsume</para>
+              </listitem>
+              <listitem>
+                <para>Dolor sit amet</para>
+              </listitem>
+            </itemizedlist></para>
+        </revdescription>
+      </revision>
+    </revhistory>
+    <legalnotice role="rs-api">
+      <annotation>
+        <remark>Copyright details are filled in by the template.</remark>
+      </annotation>
+    </legalnotice>
+    <abstract>
+      <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Etiam eros ipsum, tempor ut laoreet nec, adipiscing vel eros.
+        Integer sit amet nibh iaculis sapien sagittis blandit. Quisque
+        vel lectus felis, vel congue lorem. Pellentesque vitae elit id
+        sem faucibus ornare. Ut dictum dapibus quam, in scelerisque
+        quam tempus sit amet. Quisque ullamcorper suscipit sagittis.
+          <link xlink:href="http://www.google.com">foo</link>
+      </para>
+    </abstract>
+  </info>
+  <chapter xml:id="Overview">
+    <title>Overview</title>
+
+    <para> Here we test the autoglossary with a <glossterm>API</glossterm>. It's that simple sadfsd
+      .</para>
+
+    <screen>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros ipsum, tempor ut
+      laoreet nec, adipiscing vel eros. Integer sit amet nibh iaculis sapien sagittis blandit.
+      Quisque vel lectus felis, vel congue lorem. Pellentesque vitae elit id sem faucibus ornare.
+      Ut dictum dapibus quam, in scelerisque quam tempus sit amet. Quisque ullamcorper suscipit
+      sagittis.
+    </screen>
+
+    <?rax revhistory?>
+    
+    <programlisting>
+      1
+      2 adsfsda 
+      3
+      4
+    </programlisting>
+    <programlisting>
+      1
+      2
+      3
+      4
+    </programlisting>
+    <programlisting>
+      1
+      2
+      3
+      4
+    </programlisting>
+    <programlisting>
+      1
+      2
+      3
+      4
+    </programlisting>
+    <programlisting>
+      1
+      2
+      3
+      4
+    </programlisting>
+    <programlisting>
+      1
+      2
+      3
+      4
+    </programlisting>
+    <programlisting>
+      1
+      2
+      3
+      4
+    </programlisting>
+    <programlisting>
+      1
+      2
+      3
+      4
+    </programlisting>
+    <programlisting>
+      1
+      2
+      3
+      4
+    </programlisting>
+
+
+    <programlisting>
+      1
+      2
+      3
+      4
+      5
+      6
+      7
+      8
+      9
+      10
+    </programlisting>
+    <programlisting>
+      1
+      2
+      3
+      4
+      5
+      6
+      7
+      8
+      9
+      10
+    </programlisting>
+    <programlisting>
+      1
+      2
+      3
+      4
+      5
+      6
+      7
+      8
+      9
+      10
+    </programlisting>
+    <programlisting>
+      1
+      2
+      3
+      4
+      5
+      6
+      7
+      8
+      9
+      10
+    </programlisting>
+    <programlisting>
+      1
+      2
+      3
+      4
+      5
+      6
+      7
+      8
+      9
+      10
+    </programlisting>
+    <programlisting>
+      1
+      2
+      3
+      4
+      5
+      6
+      7
+      8
+      9
+      10
+    </programlisting>
+    <programlisting>
+      1
+      2
+      3
+      4
+      5
+      6
+      7
+      8
+      9
+      10
+    </programlisting>
+    <programlisting>
+      1
+      2
+      3
+      4
+      5
+      6
+      7
+      8
+      9
+      10
+    </programlisting>
+    <programlisting>
+      1
+      2
+      3
+      4
+      5
+      6
+      7
+      8
+      9
+      10
+    </programlisting>
+    
+
+    <note>
+      <title>Notes</title>
+      <itemizedlist>
+        <listitem>
+          <para>Foo</para>
+        </listitem>
+        <listitem>
+          <para>bar</para>
+        </listitem>
+        <listitem>
+          <para>baz</para>
+        </listitem>
+      </itemizedlist>
+    </note>
+    <informaltable rules="all">
+      <col width="10%"/>
+      <col width="10%"/>
+      <col width="80%"/>
+      <thead>
+        <tr>
+          <th>blah</th>
+          <th>alkfjdaskl</th>
+          <th>aklsdjflasd</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>akdlfjkl</td>
+          <td>lksdajf</td>
+          <td rowspan="2">adslkjf dipiscing elit. Etiam eros ipsum, tempor ut laoreet nec,
+            adipiscing vel eros. Integer sit amet nibh iaculis sapien sagittis blandit. Quisque vel
+            lectus felis, vel congue lorem. Pellentesque vitae elit id sem faucibus ornare. Ut
+            dictum dapibus quam, in scelerisque quam tempus sit amet. Quisasdflkj</td>
+        </tr>
+        <tr>
+          <td>asdfdsa</td>
+          <td>askldfj</td>
+        </tr>
+        <tr>
+          <td>asdfdsa</td>
+          <td colspan="2">dipiscing elit. Etiam eros ipsum, tempor ut laoreet nec, adipiscing vel
+            eros. Integer sit amet nibh iaculis sapien sagittis blandit. Quisque vel lectus felis,
+            vel congue lorem. Pellentesque vitae elit id sem faucibus ornare. Ut dictum dapibus
+            quam, in scelerisque quam tempus sit amet. Quis</td>
+        </tr>
+      </tbody>
+    </informaltable>
+    
+    <table rules="all">
+      <caption>Table Column Widths Hacked</caption>
+      <thead>
+        <tr align="center">
+          <td colspan="1">Verb</td>
+          <td colspan="2">URI</td>
+          <td colspan="2">RegEx</td>
+          <td colspan="1">Default</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="1">
+            &GET;
+          </td>
+          <td colspan="2">/v\d+\.\d+/*</td>
+          <td colspan="2">/v\d+\.\d+/(\d+/domains).*</td>
+          <td colspan="1">5/second</td>
+        </tr>
+        <tr>
+          <td colspan="1">
+            &POST;
+          </td>
+          <td colspan="2">/v\d+\.\d+/*</td>
+          <td colspan="2">/v\d+\.\d+/(\d+/domains).*</td>
+          <td colspan="1">2/second</td>
+        </tr>
+        <tr>
+          <td colspan="1">
+            &PUT;
+          </td>
+          <td colspan="2">/v\d+\.\d+/*</td>
+          <td colspan="2">/v\d+\.\d+/(\d+/domains).*</td>
+          <td colspan="1">5/second</td>
+        </tr>
+        <tr>
+          <td colspan="1">
+            &DELETE;
+          </td>
+          <td colspan="2">/v\d+\.\d+/*</td>
+          <td colspan="2">/v\d+\.\d+/(\d+/domains).*</td>
+          <td colspan="1">50/minute</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    
+    <table rules="all" width="75%">
+      <caption>Table Using Percentage Widths</caption>
+      <col width="16%"/>
+      <col width="14%"/>
+      <col width="42%"/>
+      <col width="28%"/>
+      <thead>
+        <tr align="center">
+          <td>Verb</td>
+          <td>URI</td>
+          <td>RegEx</td>
+          <td>Default</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td> &GET; </td>
+          <td>/v\d+\.\d+/*</td>
+          <td>/v\d+\.\d+/(\d+/domains).*</td>
+          <td>5/second</td>
+        </tr>
+        <tr>
+          <td> &POST; </td>
+          <td>/v\d+\.\d+/*</td>
+          <td>/v\d+\.\d+/(\d+/domains).*</td>
+          <td>2/second</td>
+        </tr>
+        <tr>
+          <td> &PUT; </td>
+          <td>/v\d+\.\d+/*</td>
+          <td>/v\d+\.\d+/(\d+/domains).*</td>
+          <td>5/second</td>
+        </tr>
+        <tr>
+          <td> &DELETE; </td>
+          <td>/v\d+\.\d+/*</td>
+          <td>/v\d+\.\d+/(\d+/domains).*</td>
+          <td>50/minute</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <para>Lorem x<parameter role="template">ipsum</parameter>, dolor sit amet, consectetur
+      adipiscing elit. Etiam eros ipsum, tempor ut laoreet nec, adipiscing vel eros. Integer sit
+      amet nibh iaculis sapien sagittis blandit. Quisque vel lectus felis, vel congue lorem.
+      Pellentesque vitae elit id sem faucibus ornare. Ut dictum dapibus quam, in scelerisque quam
+      tempus sit amet. Quisque ullamcorper suscipit sagittis. Maecenas euismod, lectus vitae
+      tincidunt sollicitudin, est lacus suscipit nunc, in consequat tortor turpis vel nibh. Nulla
+      eros nulla, iaculis vel laoreet at, consectetur vitae massa. Praesent in imperdiet urna. Etiam
+      commodo hendrerit tincidunt. Aliquam non tortor lectus, sit amet laoreet tortor. Vivamus sit
+      amet tempor lorem. Fusce aliquam, lacus et eleifend auctor, augue justo consectetur risus, a
+      congue arcu mi a velit. Donec lectus est, egestas eget laoreet a, accumsan ornare erat.
+      Suspendisse sed nulla ligula. Year 1915 (MCMXV) was a common year starting on Friday (link
+      will display the full calendar) of the Gregorian calendar and a common year starting on
+      Thursday of the 13-day-slower Julian. Foo bar baz. calendar.https://secure.wikimedia.org/wikipedia/en/wiki/File:S%C3%BCmb%C3%BCl.JPG<inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="figures/flower.png"/>
+        </imageobject>
+      </inlinemediaobject></para>
+    <para>
+      <table frame="all">
+        <title>CALS Table</title>
+        <tgroup cols="3">
+          <colspec colname="c1" colnum="1" colwidth="1*"/>
+          <colspec colname="c2" colnum="2" colwidth="2.34*"/>
+          <colspec colname="c3" colnum="3" colwidth="11.25*"/>
+          <thead>
+            <row>
+              <entry>Verb</entry>
+              <entry>URI</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>GET</entry>
+              <entry>/foo/bar/baz</entry>
+              <entry>elis, vel congue lorem. Pellentesque vitae elit id sem faucibus ornare. Ut
+                dictum dapibus quam, in scelerisque quam tempus sit amet. Quisque ullamcorper
+                suscipit sagittis. Maecenas euismod, lectus vitae tincidunt </entry>
+            </row>
+            <row>
+              <entry>PUT</entry>
+              <entry>/wooga/bar/baz</entry>
+              <entry>s vel nibh. Nulla eros nulla, iaculis vel laoreet at, consectetur vitae massa.
+                Praesent in imperdiet urna. Etiam commodo hendrerit tincidunt. Aliquam</entry>
+            </row>
+            <row>
+              <entry>POST</entry>
+              <entry>/exlkja/elkja/liore</entry>
+              <entry>Lorem x<parameter role="template">ipsum</parameter>, dolor sit amet,
+                consectetur adipiscing elit. Etiam eros ipsum, tempor ut laoreet nec, adipiscing vel
+                eros. Integer sit amet nibh iaculis sapien sagittis blandit. Quisque vel lectus
+                felis, vel congue lorem. Pellentesque vitae elit id sem faucibus ornare. Ut dictum
+                dapibus quam, in scelerisque quam tempus sit amet. Quisque ullamcorper suscipit
+                sagittis. Maecenas euismod, lectus vitae tincidunt sollicitudin, est lacus
+                suscdasfdasd</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+      <table>
+        <caption>HTML Table</caption>
+        <col width="7%"/>
+        <col width="16%"/>
+        <col width="77%"/>
+        <thead>
+          <tr>
+            <th>Verb</th>
+            <th>URI</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>GET</td>
+            <td>/foo/bar/baz</td>
+            <td>elis, vel congue lorem. Pellentesque vitae elit id sem faucibus ornare. Ut dictum
+              dapibus quam, in scelerisque quam tempus sit amet. Quisque ullamcorper suscipit
+              sagittis. Maecenas euismod, lectus vitae tincidunt</td>
+          </tr>
+          <tr>
+            <td>PUT</td>
+            <td>/wooga/bar/baz</td>
+            <td>s vel nibh. Nulla eros nulla, iaculis vel laoreet at, consectetur vitae massa.
+              Praesent in imperdiet urna. Etiam commodo hendrerit tincidunt. Aliquam</td>
+          </tr>
+          <tr>
+            <td>POST</td>
+            <td>/exlkja/elkja/liore</td>
+            <td>Lorem x<parameter role="template">ipsum</parameter>, dolor sit amet, consectetur
+              adipiscing elit. Etiam eros ipsum, tempor ut laoreet nec, adipiscing vel eros. Integer
+              sit amet nibh iaculis sapien sagittis blandit. Quisque vel lectus felis, vel congue
+              lorem. Pellentesque vitae elit id sem faucibus ornare. Ut dictum dapibus quam, in
+              scelerisque quam tempus sit amet. Quisque ullamcorper suscipit sagittis. Maecenas
+              euismod, lectus vitae tincidunt sollicitudin, est lacus susc</td>
+          </tr>
+        </tbody>
+      </table>
+    </para>
+    <para>We welcome feedback, comments, and bug reports at
+        <email>support@rackspacecloud.com</email> . </para>
+    <section xml:id="section_eow_tmw_ad">
+           <title>Intended Audience</title>
+      <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Etiam eros ipsum, tempor ut laoreet nec, adipiscing vel eros.
+        Integer sit amet nibh iaculis sapien sagittis blandit. Quisque
+        vel lectus felis, vel congue lorem. Pellentesque vitae elit id
+        sem faucibus ornare. Ut dictum dapibus quam, in scelerisque
+        quam tempus sit amet. Quisque ullamcorper suscipit sagittis: </para>
+      <itemizedlist spacing="compact">
+        <listitem>
+          <para>Lorem ipsume</para>
+        </listitem>
+        <listitem>
+          <para>Dolor sit amet</para>
+        </listitem>
+      </itemizedlist>
+      <para>Maecenas euismod, lectus vitae tincidunt sollicitudin, est
+        lacus suscipit nunc, in consequat tortor turpis vel nibh.
+        Nulla eros nulla, iaculis vel laoreet at, consectetur vitae
+        massa. Praesent in imperdiet urna. Etiam commodo hendrerit
+        tincidunt. Aliquam non tortor lectus, sit amet laoreet tortor.
+        Vivamus sit amet tempor lorem. Fusce aliquam, lacus et
+        eleifend auctor, augue justo consectetur risus, a congue arcu
+        mi a velit. Donec lectus est, egestas eget laoreet a, accumsan
+        ornare erat. Suspendisse sed nulla ligula.</para>
+      <para>Maecenas euismod, <link xlink:href="http://www.rackspace.com">lectus</link> vitae
+        tincidunt sollicitudin, est lacus suscipit nunc, in consequat tortor turpis vel nibh. Nulla
+        eros nulla, iaculis vel laoreet at, consectetur vitae massa. </para>
+    </section>
+    <?hard-pagebreak?>
+    <section xml:id="section_mqw_tmw_ad">
+      <title>Document Change History</title>
+      <para>Maecenas euismod, lectus vitae tincidunt sollicitudin, est
+        lacus suscipit nunc, in consequat tortor turpis vel nibh.
+        Nulla eros nulla, iaculis vel laoreet at, consectetur vitae
+        massa. Praesent in imperdiet urna.:</para>
+      <informaltable rules="all">
+        <thead>
+          <tr>
+            <td align="center" colspan="1">Revision Date</td>
+            <td align="center" colspan="4">Summary of Changes</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="1" align="center">Feb. 25, 2011</td>
+            <td colspan="4">
+              <itemizedlist spacing="compact">
+                <listitem>
+                  <para>Added information about the edge purge
+                    capability for CDN-enabled containers and
+                    objectsLorem ipsum dolor sit amet, consectetur
+                    adipiscing elit. Etiam eros ipsum, tempor ut
+                    laoreet nec, adipiscing vel eros. Integer sit amet
+                    nibh iaculis sapien sagittis blandit. .</para>
+                </listitem>
+              </itemizedlist>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="1" align="center">Feb. 18, 2011</td>
+            <td colspan="4">
+              <itemizedlist spacing="compact">
+                <listitem>
+                  <para>Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit. Etiam eros ipsum, tempor ut
+                    laoreet nec, adipiscing vel eros. Integer sit amet
+                    nibh iaculis sapien sagittis blandit.  </para>
+                </listitem>
+                <listitem>
+                  <para>Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit. Etiam eros ipsum, tempor ut
+                    laoreet nec, adipiscing vel eros. Integer sit amet
+                    nibh iaculis sapien sagittis blandit. </para>
+                </listitem>
+                <listitem>
+                  <para>Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit. Etiam eros ipsum, tempor ut
+                    laoreet nec, adipiscing vel eros. Integer sit amet
+                    nibh iaculis sapien sagittis blandit. </para>
+                </listitem>
+              </itemizedlist>
+            </td>
+          </tr>
+        </tbody>
+      </informaltable>
+    </section>
+    <section xml:id="section_jtw_tmw_ad">
+      <title>Additional Resources</title>
+      <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Etiam eros ipsum, tempor ut laoreet nec, adipiscing vel eros.
+        Integer sit amet nibh iaculis sapien sagittis blandit.  </para>
+      <para>Suspendisse eu sapien elit. Duis vitae odio orci. Nunc nec
+        nisl vel arcu condimentum adipiscing. Proin auctor, dui quis
+        aliquet varius, nulla libero faucibus est, eu ullamcorper
+        turpis enim id ante. Vivamus sem magna, egestas at mattis
+        eget, eleifend in mauris. Duis in quam in magna sollicitudin
+        sagittis. Pellentesque habitant morbi tristique senectus et
+        netus et malesuada fames ac turpis egestas. Aenean accumsan
+        malesuada erat, ut volutpat neque hendrerit eget. Praesent et
+        elit lacus. Proin dolor neque, mattis at ultricies ultrices,
+        accumsan non orci. Proin sagittis lorem vitae justo hendrerit
+        faucibus. Aliquam iaculis rhoncus orci, venenatis tempor
+        turpis mollis a. Fusce at enim sed mauris lobortis ultrices.
+        Cras quam risus, tristique quis tincidunt ut, porttitor nec
+        lacus. Nam eget dui eu quam ultrices lacinia quis id nunc.
+        Vestibulum dapibus arcu a purus sollicitudin ultrices. </para>
+      <para>You can also follow updates and announcements via twitter
+        at <link xlink:href="http://www.twitter.com/rackcloud"
+          >http://www.twitter.com/rackcloud</link> s</para>
+    </section>
+
+    <xi:include href="test.xml"/>
+  </chapter>
+    
+  <glossary role="auto"/>
+
+</book>

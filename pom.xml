@@ -1,0 +1,134 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.rackspace.cloud.docs.example</groupId>
+  <artifactId>cloud-example-docs</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <name>Example API Docs</name>
+  <profiles>
+    <profile>
+      <id>Rackspace Research Repositories</id>
+      <activation>
+	<activeByDefault>true</activeByDefault>
+      </activation>
+      <repositories>
+	<repository>
+	  <id>rackspace-research</id>
+	  <name>Rackspace Research Repository</name>
+	  <url>http://maven.research.rackspacecloud.com/content/groups/public/</url>
+	</repository>
+      </repositories>
+      <pluginRepositories>
+	<pluginRepository>
+	  <id>rackspace-research</id>
+	  <name>Rackspace Research Repository</name>
+	  <url>http://maven.research.rackspacecloud.com/content/groups/public/</url>
+	</pluginRepository>
+      </pluginRepositories>
+    </profile>
+  </profiles>
+   <dependencies> 
+     <dependency> 
+       <groupId>com.rackspace.cloud.api</groupId> 
+       <artifactId>glossary</artifactId> 
+       <version>1.0.0-SNAPSHOT</version> 
+     </dependency> 
+   </dependencies> 
+  <build>
+    <plugins>
+
+       <plugin> 
+         <groupId>org.apache.maven.plugins</groupId> 
+         <artifactId>maven-dependency-plugin</artifactId> 
+         <executions> 
+           <execution> 
+             <id>unpack-dependencies</id> 
+             <phase>validate</phase> 
+             <goals> 
+               <goal>unpack-dependencies</goal> 
+             </goals> 
+           </execution> 
+         </executions> 
+       </plugin> 
+
+      <plugin>
+      	<groupId>org.apache.maven.plugins</groupId>
+      	<artifactId>maven-dependency-plugin</artifactId>
+      	<executions>
+      	  <execution>
+      	    <id>unpack-dependencies</id>
+    <!--<phase>generate-sources</phase>-->
+      	    <goals>
+      	      <goal>unpack</goal>
+      	    </goals>
+      	    <configuration>
+      	      <artifactItems>
+      		<artifactItem>
+      		  <groupId>com.rackspace.cloud.api</groupId>
+      		  <artifactId>glossary</artifactId>
+      		  <version>1.0.0-SNAPSHOT</version>
+      		  <outputDirectory>${project.build.directory}/mvn/com.rackspace.cloud.api/glossary</outputDirectory>
+      		</artifactItem>
+      	      </artifactItems>
+      	    </configuration>
+      	  </execution>
+      	</executions>
+      </plugin>
+      <plugin>
+	<groupId>com.rackspace.cloud.api</groupId>
+	<artifactId>clouddocs-maven-plugin</artifactId>
+	<version>1.0.9</version>
+	<executions>
+	  <execution>
+	    <goals>
+ 	      <goal>generate-pdf</goal> 
+	      <goal>generate-webhelp</goal> 
+	      <!-- <goal>generate-epub</goal> -->
+<!--	      <goal>generate-html</goal>-->
+	    </goals>
+	    <phase>generate-sources</phase>
+	  </execution>
+	</executions>
+	<configuration>
+	  <includes>example.xml</includes>
+	  <xincludeSupported>true</xincludeSupported>
+	  <!-- <collectXrefTargets>only</collectXrefTargets> -->
+	  <targetsFilename>target/target.db</targetsFilename>
+	  <chunkSectionDepth>0</chunkSectionDepth>
+	  <chapterAutolabel>0</chapterAutolabel>
+	  <webhelpIncludeSearchTab>0</webhelpIncludeSearchTab>
+	  <chunkFirstSections>0</chunkFirstSections>
+	  <security>reviewer</security>
+	  <canonicalUrlBase>http://docs.rackspace.com/foo/api/v.1.0</canonicalUrlBase>
+	  <pdfUrl>../foo.pdf</pdfUrl>
+	  <enableDisqus>intranet</enableDisqus>
+	  <feedbackEmail>david.cramer@rackspace.com</feedbackEmail>
+	  
+	  <preProcess>            <mkdir dir="${project.build.directory}/docbkx/webhelp/api-quick-start/content"/>            <echo file="${project.build.directory}/docbkx/webhelp/api-quick-start/content/deleteme.html">              &lt;html xmlns="http://www.w3.org/1999/xhtml">                &lt;body>                &lt;div id="content">                  &lt;p>foo bar baz&lt;/p>                  &lt;/div>                &lt;/body>              &lt;/html>            </echo>          </preProcess>          <postProcess>            <delete file="${project.build.directory}/docbkx/webhelp/api-quick-start/content/deleteme.html"/>
+	  <copy todir="target/docbkx/webhelp/example/content/figures">
+	    <fileset dir="src/docbkx/figures">
+	      <include name="**/*.png" />
+	    </fileset>
+	  </copy>
+
+	  <!-- <zip  -->
+	  <!--     destfile="target/docbkx/epub/example.epub" -->
+	  <!--     update="true"> -->
+	  <!--   <fileset dir="src/docbkx"> -->
+	  <!--     <include name="figures/**/*.png" /> -->
+	  <!--   </fileset> -->
+	  <!-- </zip> -->
+	</postProcess>
+	<tablecolumnsExtension>1</tablecolumnsExtension>
+	<useExtensions>1</useExtensions>
+	<branding>rackspace</branding>
+	<metaRobots>1</metaRobots>
+	<socialIcons>1</socialIcons>
+	<graphicsizeUseImgSrcPath>0</graphicsizeUseImgSrcPath>
+	<showXslMessages>true</showXslMessages>
+	<glossaryCollection>${project.build.directory}/../src/docbkx/glossary/glossary.xml</glossaryCollection>
+	</configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
