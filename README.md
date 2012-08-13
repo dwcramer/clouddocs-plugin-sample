@@ -1,10 +1,8 @@
 README
 ====================
 
-This is a sample project for use in experiementing with git and
-github. 
+This is a sample starter project for generating docs from a wadl. For more information, see: 
 
-The README file
----------------------
-This readme file is just a file explaining what this project is.
+https://one.rackspace.com:8443/display/RED/Writer%27s+Guide+to+developing+DocBook-sourced+documentation
+
 
