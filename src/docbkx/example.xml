@@ -64,9 +64,13 @@
     <?rax type="concept" product="Cloud Servers" priority="10"?>
     <?dbhtml navigation="true"?>
     <title>Introduction</title>
-    <info>
-      <productname>Cloud Databases</productname>
-    </info>
+     <info>
+      <raxm:metadata xmlns:raxm="http://docs.rackspace.com/api/metadata">
+        <raxm:product>cdns</raxm:product>
+        <raxm:type>concept</raxm:type>
+        <raxm:priority>2</raxm:priority>
+      </raxm:metadata>
+     </info>
     <!-- <?dbhtml stop-chunking?> -->
     <para>My API is more RESTful than yours. Etiam eros ipsum, tempor
       ut laoreet nec, adipiscing vel eros. Integer sit amet nibh

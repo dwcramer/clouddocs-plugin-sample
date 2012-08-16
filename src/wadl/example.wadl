@@ -1,16 +1,40 @@
 <application xmlns="http://wadl.dev.java.net/2009/02"
+	xmlns:wadl="http://wadl.dev.java.net/2009/02"
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<resources base="https://localhost:5000">
+		<?rax start-sections?>
 		<resource path="1.0">
 			<doc title="version Lorem"/>
-			<?rax start-sections?>
 			<resource id="a" path="a">
-				<doc title="Title for this section"/>
+				<wadl:doc title="Title for this section" />
 				<resource id="b" path="b">
-					<doc title="b Lorem"/>
+					<wadl:doc title="Anuther title" xmlns="http://docbook.org/ns/docbook">
+						<para>This is an example of switching the default namespace to 
+							DocBook so we can put DocBook inside our wadl. Notice that 
+							I added the wadl: prefix to the doc element and then changed
+							the default namespace to the DocBook namespace.</para>
+						<itemizelist>
+							<listitem>
+								<para>More DocBook. I still don't need to use namespace prefixes
+									because DocBook is the default namespace at this point.</para>
+							</listitem>
+						</itemizelist>
+					</wadl:doc>
 					<resource id="c" path="c" type="#rtype">
-						<doc title="Ipsum"/>
-						<method href="#baz"/>
+						<doc title="Ipsum">
+							<para xmlns="http://docbook.org/ns/docbook">
+								Here's another way of switching the namespace in 
+								mid-stream. I can now use inline DocBook markup like the 
+								<tag>tag</tag> tag without a prefix. But if I add a second
+								para I need to declare the default namespace again.
+							</para>
+						</doc>
+						<method href="#baz">
+							<wadl:doc title="b Lorem" xmlns="http://www.w3.org/1999/xhtml">
+								<p>Now I'm able to use xhtml to mark up my docs because
+									I switched to the xhtml namespace.</p>
+							</wadl:doc>
+						</method>
 					</resource>
 				</resource>
 				<resource id="d" path="d">
