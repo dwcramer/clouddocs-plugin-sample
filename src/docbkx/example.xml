@@ -70,7 +70,7 @@
     <?dbhtml navigation="true"?>
     <title>Introduction</title>
     <!-- <?dbhtml stop-chunking?> -->
-    <para>My API is more RESTful than yours. Etiam eros ipsum, tempor
+    <para>My API PROBABLY is more RESTful than yours. Etiam eros ipsum, tempor
       ut laoreet nec, adipiscing vel eros. Integer sit amet nibh
       iaculis sapien sagittis blandit. Quisque vel lectus felis, vel
       congue lorem. Pellentesque vitae elit id sem faucibus ornare. Ut
