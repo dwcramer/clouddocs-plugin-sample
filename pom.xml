@@ -35,29 +35,19 @@
       <plugin>
 	<groupId>com.rackspace.cloud.api</groupId>
 	<artifactId>clouddocs-maven-plugin</artifactId>
-	<version>1.4.0</version>
+	<version>1.6.2-SNAPSHOT</version>
 	<executions>
 	  <execution>
 	    <goals>
 	      <goal>generate-webhelp</goal> 
-	      <goal>generate-pdf</goal> 
 	    </goals>
 	    <phase>generate-sources</phase>
 	  </execution>
 	</executions>
 	<configuration>
 	  <includes>example.xml</includes>
-	  <xincludeSupported>true</xincludeSupported>
-	  <pdfUrl>../example.pdf</pdfUrl>
 	  <enableDisqus>intranet</enableDisqus>
 	  <feedbackEmail>your.name@rackspace.com</feedbackEmail>	  
-	  <preProcess>
-	    <copy todir="target/docbkx/webhelp/example/content/figures">
-	      <fileset dir="src/docbkx/figures">
-		<include name="**/*.png" />
-	      </fileset>
-	    </copy>
-	  </preProcess>
 	  <branding>rackspace</branding>
 	  <showXslMessages>true</showXslMessages>
 	</configuration>
