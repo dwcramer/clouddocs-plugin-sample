@@ -60,8 +60,8 @@
         sagittis.</para>
     </abstract>
       <raxm:metadata xmlns:raxm="http://docs.rackspace.com/api/metadata">
-        <raxm:product>example</raxm:product>
-	      <raxm:displayname>Example Doc</raxm:displayname>
+        <raxm:product version="v1.0">example</raxm:product>
+	<raxm:displayname>Example Doc</raxm:displayname>
         <raxm:priority>2</raxm:priority>
       </raxm:metadata>
   </info>
