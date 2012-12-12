@@ -59,13 +59,11 @@
         quam tempus sit amet. Quisque ullamcorper suscipit
         sagittis.</para>
     </abstract>
-     <info>
       <raxm:metadata xmlns:raxm="http://docs.rackspace.com/api/metadata">
         <raxm:product>example</raxm:product>
-	<raxm:displayname>Example Doc</raxm:displayname>
+	      <raxm:displayname>Example Doc</raxm:displayname>
         <raxm:priority>2</raxm:priority>
       </raxm:metadata>
-     </info>
   </info>
   <chapter xml:id="Overview">
     <?rax type="concept" product="Cloud Servers" priority="10"?>
