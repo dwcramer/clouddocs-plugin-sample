@@ -46,7 +46,7 @@
 	</executions>
 	<configuration>
 	  <includes>example.xml</includes>
-	  <security>reviewer</security>
+	  <security>internal</security>
 	  <enableDisqus>intranet</enableDisqus>
 	  <feedbackEmail>your.name@rackspace.com</feedbackEmail>	  
 	  <branding>rackspace</branding>
