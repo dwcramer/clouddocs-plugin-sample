@@ -8,34 +8,12 @@
   <version>1.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>Example API Docs</name>
-  <profiles>
-    <profile>
-      <id>Rackspace Research Repositories</id>
-      <activation>
-	<activeByDefault>true</activeByDefault>
-      </activation>
-      <repositories>
-	<repository>
-	  <id>rackspace-research</id>
-	  <name>Rackspace Research Repository</name>
-	  <url>http://maven.research.rackspacecloud.com/content/groups/public/</url>
-	</repository>
-      </repositories>
-      <pluginRepositories>
-	<pluginRepository>
-	  <id>rackspace-research</id>
-	  <name>Rackspace Research Repository</name>
-	  <url>http://maven.research.rackspacecloud.com/content/groups/public/</url>
-	</pluginRepository>
-      </pluginRepositories>
-    </profile>
-  </profiles>
   <build>
     <plugins>
       <plugin>
 	<groupId>com.rackspace.cloud.api</groupId>
 	<artifactId>clouddocs-maven-plugin</artifactId>
-	<version>1.6.2-SNAPSHOT</version>
+	<version>1.7.3-SNAPSHOT</version>
 	<executions>
 	  <execution>
 	    <goals>
@@ -46,7 +24,6 @@
 	</executions>
 	<configuration>
 	  <includes>example.xml</includes>
-	  <security>internal</security>
 	  <enableDisqus>intranet</enableDisqus>
 	  <feedbackEmail>your.name@rackspace.com</feedbackEmail>	  
 	  <branding>rackspace</branding>
@@ -74,4 +51,26 @@
       </plugin>
     </plugins>
   </build>
+  <profiles>
+    <profile>
+      <id>Rackspace Research Repositories</id>
+      <activation>
+	<activeByDefault>true</activeByDefault>
+      </activation>
+      <repositories>
+	<repository>
+	  <id>rackspace-research</id>
+	  <name>Rackspace Research Repository</name>
+	  <url>http://maven.research.rackspacecloud.com/content/groups/public/</url>
+	</repository>
+      </repositories>
+      <pluginRepositories>
+	<pluginRepository>
+	  <id>rackspace-research</id>
+	  <name>Rackspace Research Repository</name>
+	  <url>http://maven.research.rackspacecloud.com/content/groups/public/</url>
+	</pluginRepository>
+      </pluginRepositories>
+    </profile>
+  </profiles>
 </project>
