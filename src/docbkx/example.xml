@@ -172,7 +172,7 @@
         <caption>An example of a table with a title</caption>
         <col width="36%"/>
         <col width="13%"/>
-        <col width="599.25pt"/>
+        <col width="50%"/>
         <thead>
           <tr>
             <th>Type of image</th>
