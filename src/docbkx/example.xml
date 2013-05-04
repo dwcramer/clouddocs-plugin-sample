@@ -15,8 +15,7 @@
       <holder>Rackspace US, Inc.</holder>
     </copyright>
     <releaseinfo>API v1.0</releaseinfo>
-    <productname>Rackspace Cloud
-      Ipsum<!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.--></productname>
+    <productname>Rackspace Cloud Ipsum</productname><!--Note that the <productname> text matches the first few words of the title. The build system splits the title into productname + rest of title on the pdf cover.-->
     <pubdate><!--If you leave the <pubdate> element empty, the build system inserts today's date automatically. --></pubdate>
     <revhistory>
       <revision>
