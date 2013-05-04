@@ -3,438 +3,411 @@
 <!-- (C) 2012 OpenStack LLC., All Rights Reserved -->
 
 <application xmlns="http://wadl.dev.java.net/2009/02"
-             xmlns:xsdxt="http://docs.rackspacecloud.com/xsd-ext/v1.0"
              xmlns:wadl="http://wadl.dev.java.net/2009/02"
+	     xmlns:xlink="http://www.w3.org/1999/xlink"
+             xmlns:xsdxt="http://docs.rackspacecloud.com/xsd-ext/v1.0"
 	     xmlns:raxapi="http://docs.rackspace.com/volume/api/v1">
 
-    <resources base="https://volume.example.com/">
-        <resource id="version" path="v1">
-            <resource id="tenant_id" path="{tenant_id}">
-                <!-- <param name="tenant_id" style="template">
-                    <doc>
-                        <p xmlns="http://www.w3.org/1999/xhtml">
-                            The unique identifier of the tenant or account.
-                        </p>
-                    </doc>
-                </param> -->
-                <?rax start-sections?>
-                <resource id="volumes" path="volumes">
-                <doc title="Volumes"/>   
-                   <method href="#createVolume" />
-                   <method href="#getVolumesSimple" />
+  <resources base="https://volume.example.com/">
+    <resource id="version" path="v1">
+      <resource id="tenant_id" path="{tenant_id}">
+	<param name="tenant_id" style="template">
+	  <wadl:doc  xmlns="http://docbook.org/ns/docbook">
+	    <para>
+	      The unique identifier of the tenant or account.
+	    </para>
+	  </wadl:doc>
+	</param>
+	<?rax start-sections?>
+	<resource id="volumes" path="volumes">
+	  <wadl:doc title="Volumes"/>   
+	  <method href="#createVolume" />
+	  <method href="#getVolumesSimple" />
 
-                       <resource path="detail" id="detail">
-                           <!-- as of 7-25-12, this is same as non-detailed  
-                               <method href="#getVolumesDetail" />  -->
-                       </resource>
+	  <resource path="{volume_id}" id="volume_id">
+	    <param name="volume_id" style="template" required="true">
+	      <wadl:doc xmlns="http://docbook.org/ns/docbook"><para>
+		The unique identifier of an existing Volume.
+	      </para></wadl:doc>
+	    </param>
+	    
+	    <method href="#getVolume" />
+	    <method href="#deleteVolume" />
+	    
+	  </resource>
+	</resource>
+	
+	<resource id="volume_types" path="/types">
+	  <wadl:doc title="Volume types"/>
+	  <method href="#getVolumeTypes" />
 
-                       <resource path="{volume_id}" id="volume_id">
-                           <param name="volume_id" style="template" required="true">
-                               <doc><p xmlns="http://www.w3.org/1999/xhtml">
-                                   The unique identifier of an existing Volume.
-                               </p></doc>
-                           </param>
-        
-                          <method href="#getVolume" />
-                          <method href="#deleteVolume" />
-        
-                       </resource>
-                </resource>
-                
-                <resource id="volume_types" path="/types">
-                    <doc title="Volume types"/>
-                    <method href="#getVolumeTypes" />
+	  <resource path="{volume_type_id}" id="volume_type_id">
+	    <param name="volume_type_id" style="template" required="true">
+	      <wadl:doc xmlns="http://docbook.org/ns/docbook"><para>
+		The unique identifier of an existing Volume Type.
+	      </para></wadl:doc>
+	    </param>
 
-                    <resource path="{volume_type_id}" id="volume_type_id">
-                        <param name="volume_type_id" style="template" required="true">
-                            <doc><p xmlns="http://www.w3.org/1999/xhtml">
-                                The unique identifier of an existing Volume Type.
-                            </p></doc>
-                        </param>
+	    <method href="#getVolumeType" />
+	  </resource>
+	</resource>
 
-                        <method href="#getVolumeType" />
-                    </resource>
-                </resource>
+	<resource id="snapshots" path="snapshots">
+	  <wadl:doc title="Snapshots"/>
+	  <method href="#createSnapshot" />
+	  <method href="#getSnapshotsSimple" />
 
-                <resource id="snapshots" path="snapshots">
-		   <doc title="Snapshots"/>
-                    <method href="#createSnapshot" />
-                    <method href="#getSnapshotsSimple" />
+	  <resource path="{snapshot_id}" id="snapshot_id">
+	    <param name="snapshot_id" style="template" required="true">
+	      <wadl:doc  xmlns="http://docbook.org/ns/docbook"><para>
+		The unique identifier of an existing Snapshot.
+	      </para></wadl:doc>
+	    </param>
 
-                    <resource path="detail" id="snapshot_detail">
-                        <!-- as of 7-25-12, this is same as non-detailed   
-                           <method href="#getSnapshotsDetail" /> -->
-                    </resource>
+	    <method href="#getSnapshot" />
+	    <method href="#deleteSnapshot" />
 
-                    <resource path="{snapshot_id}" id="snapshot_id">
-                        <param name="snapshot_id" style="template" required="true">
-                            <doc><p xmlns="http://www.w3.org/1999/xhtml">
-                                The unique identifier of an existing Snapshot.
-                            </p></doc>
-                        </param>
+	  </resource>
+	</resource>
 
-                        <method href="#getSnapshot" />
-                        <method href="#deleteSnapshot" />
+      </resource>
+    </resource>
+  </resources>
 
-                    </resource>
-                </resource>
+  <method name="POST" id="createVolume">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="en" title="Create Volume">
+      <para role="shortdesc">Creates the volume.</para>
+		<para>
+	The below example creates a SATA volume called "vol-001" that has a size of 100 GB.
+      </para>
+    </wadl:doc>
+    <request>
+      <param name="volume" style="query" type="string" required="true">
+	<wadl:doc xmlns="http://docbook.org/ns/docbook">
+	  <para>A partial representation of a volume used in the creation process.</para>
+	</wadl:doc>
+      </param>
+      <param name="size" style="query" type="string" required="true">
+	<wadl:doc xmlns="http://docbook.org/ns/docbook">
+	  <para>The size (in GB) of the volume.</para>
+	</wadl:doc>
+      </param>
+      <param name="display_description" style="query" type="string" required="false">
+	<wadl:doc xmlns="http://docbook.org/ns/docbook">
+	  <para>A description of the volume.</para>
+	</wadl:doc>
+      </param>
+      <param name="display_name" style="query" type="string" required="false">
+	<wadl:doc xmlns="http://docbook.org/ns/docbook">
+	  <para>The name of the volume.</para>
+	</wadl:doc>
+      </param>
+      <param name="snapshot_id" style="query" type="string" required="false">
+	<wadl:doc xmlns="http://docbook.org/ns/docbook">
+	  <para>The optional snapshot from which to create a volume.</para>
+	</wadl:doc>
+      </param>
+      <param name="volume_type" style="query" type="string" required="false">
+	<wadl:doc xmlns="http://docbook.org/ns/docbook">
+	  <para>The type of volume to create, either SATA or SSD. If not defined,
+	  then the default, SATA, is used.</para>
+	</wadl:doc>
+      </param>
+      
+      <representation mediaType="application/xml" element="raxapi:volume">
+	
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/volume_create.xml" />
+	</wadl:doc>                            
+      </representation>
+      <representation mediaType="application/json">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/volume_create.json" />
+	</wadl:doc>
+      </representation>
+    </request>
 
-          </resource>
-        </resource>
-    </resources>
+    <response status="200">
+      <representation mediaType="application/xml" element="raxapi:volume">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/volume_show.xml" />
+	</wadl:doc>
+      </representation>
+      <representation mediaType="application/json">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/volume_show.json" />
+	</wadl:doc>
+	<wadl:doc xmlns="http://docbook.org/ns/docbook">
+	  <para>Note that you use the <code>os-volume_attachments</code> API call 
+	  (<code>/servers/{server_id}/os-volume_attachments</code>) to attach 
+	  the new volume to your Next Generation Cloud Server (with 
+	  the specified {server_id}). 
+	  Refer to the <citetitle>Next Generation Cloud Servers Developer Guide</citetitle> 
+	  at <link xlink:href="http://docs.rackspace.com/api">docs.rackspace.com</link> for details 
+	  of the call. Once the volume is attached, the new volume will appear 
+	  as another device on the Next Generation Cloud Server. It can 
+	  then be partitioned, formatted, and mounted for use on the system. </para>
+	</wadl:doc>
+	
 
-    <method name="POST" id="createVolume">
-        <wadl:doc xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" title="Create Volume">
-           <p xmlns="http://www.w3.org/1999/xhtml" class="shortdesc">Creates the volume.</p>
-            
-            
-<!--
-    The below are examples of how to insert new text into the wadl and have it display.
-    Two forms of text are given, Comment to the Reviewer and Straight Text
-    <p>
-            <remark xmlns="http://docbook.org/ns/docbook" security="reviewer">Reviewer - Here is my question!</remark>
-            </p>
-            <p xmlns="http://www.w3.org/1999/xhtml">Create a Volume - hey! this is old text. 
-            The below example creates a volume called vol-001.</p>
--->            
-            <doc><p xmlns="http://www.w3.org/1999/xhtml">
-                The below example creates a SATA volume called "vol-001" that has a size of 100 GB.
-            </p></doc>
-        </wadl:doc>
-        <request>
-            <param name="volume" style="query" type="string" required="true">
-                <doc><p xmlns="http://www.w3.org/1999/xhtml">
-                    A partial representation of a volume used in the creation process.
-                </p></doc>
-            </param>
-            <param name="size" style="query" type="string" required="true">
-                <doc><p xmlns="http://www.w3.org/1999/xhtml">
-                    The size (in GB) of the volume.
-                </p></doc>
-            </param>
-            <param name="display_description" style="query" type="string" required="false">
-                <doc><p xmlns="http://www.w3.org/1999/xhtml">
-                    A description of the volume.
-                </p></doc>
-            </param>
-            <param name="display_name" style="query" type="string" required="false">
-                <doc><p xmlns="http://www.w3.org/1999/xhtml">
-                    The name of the volume. 
-                </p></doc>
-            </param>
-            <param name="snapshot_id" style="query" type="string" required="false">
-                <doc><p xmlns="http://www.w3.org/1999/xhtml">
-                    The optional snapshot from which to create a volume.
-                </p></doc>
-            </param>
-            <param name="volume_type" style="query" type="string" required="false">
-                <doc><p xmlns="http://www.w3.org/1999/xhtml">
-                    The type of volume to create, either SATA or SSD. If not defined,
-                    then the default, SATA, is used.
-                </p></doc>
-            </param>
-            
-            <representation mediaType="application/xml" element="raxapi:volume">
-                
-                <doc xml:lang="EN">
-                    <xsdxt:code href="samples/volume_create.xml" />
-                </doc>                            
-            </representation>
-            <representation mediaType="application/json">
-                <doc xml:lang="EN">
-                    <xsdxt:code href="samples/volume_create.json" />
-                </doc>
-            </representation>
-        </request>
+	
+      </representation>
+    </response>
+  </method>
 
-        <response status="200">
-            <representation mediaType="application/xml" element="raxapi:volume">
-                <doc xml:lang="EN">
-                    <xsdxt:code href="samples/volume_show.xml" />
-                </doc>
-            </representation>
-            <representation mediaType="application/json">
-                <doc xml:lang="EN">
-                    <xsdxt:code href="samples/volume_show.json" />
-                </doc>
-                <doc><p xmlns="http://www.w3.org/1999/xhtml">
-                    Note that you use the <code>os-volume_attachments</code> API call 
-                    (/servers/{server_id}/os-volume_attachments) to attach 
-                    the new volume to your Next Generation Cloud Server (with 
-                    the specified {server_id}). 
-                    Refer to the <i>Next Generation Cloud Servers Developer Guide</i> 
-                    at <a href="http://docs.rackspace.com/api">docs.rackspace.com</a> for details 
-                    of the call. Once the volume is attached, the new volume will appear 
-                    as another device on the Next Generation Cloud Server. It can 
-                    then be partitioned, formatted, and mounted for use on the system.    
-                </p></doc>
-                
+  <method name="GET" id="getVolumesSimple">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="en" title="List Volumes">
+      <para xmlns="http://docbook.org/ns/docbook">View a list of volumes.</para>
+    </wadl:doc>
+    <response status="200">
+      <representation mediaType="application/xml" element="raxapi:volumes">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/volume_list_simple.xml" />
+	</wadl:doc>
+      </representation>
+      <representation mediaType="application/json">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/volume_list_simple.json" />
+	</wadl:doc>
+      </representation>
+    </response>
+  </method>
 
-                
-            </representation>
-        </response>
-    </method>
+  <method name="GET" id="getVolumesDetail">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="en"
+	      title="List Volumes (Detailed)">
+      <para xmlns="http://docbook.org/ns/docbook">View a list of detailed Volume entities.</para>
 
-    <method name="GET" id="getVolumesSimple">
-        <wadl:doc xmlns="http://www.w3.org/1999/xhtml" xml:lang="E" title="List Volumes">
-            <p xmlns="http://www.w3.org/1999/xhtml">View a list of volumes.</p>
-        </wadl:doc>
-        <response status="200">
-            <representation mediaType="application/xml" element="raxapi:volumes">
-                <doc xml:lang="EN">
-                    <xsdxt:code href="samples/volume_list_simple.xml" />
-                </doc>
-            </representation>
-            <representation mediaType="application/json">
-                <doc xml:lang="EN">
-                    <xsdxt:code href="samples/volume_list_simple.json" />
-                </doc>
-            </representation>
-        </response>
-    </method>
+    </wadl:doc>
+    <response status="200">
+      <representation mediaType="application/xml" element="raxapi:volumes">
+	<wadl:doc xml:lang="en">
+	  
+	  <xsdxt:code href="samples/volume_list_simple.xml" />
+	  
+	</wadl:doc>
+      </representation>
+      <representation mediaType="application/json">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/volume_list_simple.json" />
+	</wadl:doc>
+      </representation>
+    </response>
+  </method>
 
-    <method name="GET" id="getVolumesDetail">
-        <wadl:doc xmlns="http://www.w3.org/1999/xhtml" xml:lang="E"
-            title="List Volumes (Detailed)">
-            <p xmlns="http://www.w3.org/1999/xhtml">View a list of detailed Volume entities.</p>
-
-        </wadl:doc>
-        <response status="200">
-            <representation mediaType="application/xml" element="raxapi:volumes">
-                <doc xml:lang="EN">
-                    
-                    <xsdxt:code href="samples/volume_list_simple.xml" />
-                    
-                </doc>
-            </representation>
-            <representation mediaType="application/json">
-                <doc xml:lang="EN">
-                    <xsdxt:code href="samples/volume_list_simple.json" />
-                </doc>
-            </representation>
-        </response>
-    </method>
-
-    <method name="GET" id="getVolume">
-        <wadl:doc xmlns="http://www.w3.org/1999/xhtml" xml:lang="E" title="Show Volume">
-            <p xmlns="http://www.w3.org/1999/xhtml">View all information about a single Volume.</p>
-        </wadl:doc>
-        <request>
-        </request>
-        <response status="200">
-            <representation mediaType="application/xml" element="raxapi:volume">
-                <doc xml:lang="EN">
-                    <xsdxt:code href="samples/volume_show.xml" />
-                </doc>
-            </representation>
-            <representation mediaType="application/json">
-                <doc xml:lang="EN">
-                    <xsdxt:code href="samples/volume_show.json" />
-                </doc>
-            </representation>
-        </response>
-    </method>
+  <method name="GET" id="getVolume">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="en" title="Show Volume">
+      <para xmlns="http://docbook.org/ns/docbook">View all information about a single Volume.</para>
+    </wadl:doc>
+    <request>
+    </request>
+    <response status="200">
+      <representation mediaType="application/xml" element="raxapi:volume">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/volume_show.xml" />
+	</wadl:doc>
+      </representation>
+      <representation mediaType="application/json">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/volume_show.json" />
+	</wadl:doc>
+      </representation>
+    </response>
+  </method>
 
 
-    <method name="DELETE" id="deleteVolume">
-        <wadl:doc xmlns="http://www.w3.org/1999/xhtml" xml:lang="E" title="Delete Volume">
-            <p xmlns="http://www.w3.org/1999/xhtml">Delete a single Volume.</p>
-            <doc><p xmlns="http://www.w3.org/1999/xhtml">
-                Due to a limitatin in the OpenStack source, it is not currently (October, 2012) possible
-                to delete a Volume once you have created a snapshot from it.
-            </p></doc>
-        </wadl:doc>
-        <response status="202" />
-    </method>
+  <method name="DELETE" id="deleteVolume">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="en" title="Delete Volume">
+      <para xmlns="http://docbook.org/ns/docbook">Delete a single Volume.</para>
+	  <para>Due to a limitatin in the OpenStack source, it is not currently (October, 2012) possible
+	to delete a Volume once you have created a snapshot from it.</para>   
+    </wadl:doc>
+    <response status="202" />
+  </method>
 
-    <method name="GET" id="getVolumeTypes">
-        <wadl:doc xmlns="http://www.w3.org/1999/xhtml" xml:lang="E" title="List Volume Types">
-            <p xmlns="http://www.w3.org/1999/xhtml">Request a list of Volume Types.</p>
-        </wadl:doc>
-        <response status="200">
-            <representation mediaType="application/xml" element="raxapi:volume_types">
-                <doc xml:lang="EN">
-                    <xsdxt:code href="samples/volume_type_list.xml" />
-                </doc>
-            </representation>
-            <representation mediaType="application/json">
-                <doc xml:lang="EN">
-                    <xsdxt:code href="samples/volume_type_list.json" />
-                </doc>
-                <doc><p xmlns="http://www.w3.org/1999/xhtml">
-                    Note that two storage types are currently supported: SATA 
-                    and SSD. SATA is the standard performance storage option 
-                    and SSD is the high performance option. 
-                </p></doc>
-            </representation>
-        </response>
-    </method>
+  <method name="GET" id="getVolumeTypes">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="en" title="List Volume Types">
+      <para xmlns="http://docbook.org/ns/docbook">Request a list of Volume Types.</para>
+    </wadl:doc>
+    <response status="200">
+      <representation mediaType="application/xml" element="raxapi:volume_types">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/volume_type_list.xml" />
+	</wadl:doc>
+      </representation>
+      <representation mediaType="application/json">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/volume_type_list.json" />
+	</wadl:doc>
+	<wadl:doc xmlns="http://docbook.org/ns/docbook">
+	  <para>Note that two storage types are currently supported: SATA 
+	  and SSD. SATA is the standard performance storage option 
+	  and SSD is the high performance option.</para>
+	</wadl:doc>
+      </representation>
+    </response>
+  </method>
 
-    <method name="GET" id="getVolumeType">
-        <wadl:doc xmlns="http://www.w3.org/1999/xhtml" xml:lang="E" title="Describe Volume Type">
-            <p xmlns="http://www.w3.org/1999/xhtml">Request a single Volume Type.</p>
+  <method name="GET" id="getVolumeType">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="en" title="Describe Volume Type">
+      <para xmlns="http://docbook.org/ns/docbook">Request a single Volume Type.</para>
 
-        </wadl:doc>
-  
-        <response status="200">
-            <representation mediaType="application/xml" element="raxapi:volume_type">
-                <doc xml:lang="EN">
-                    <xsdxt:code href="samples/volume_type_show.xml" />
-                </doc>
-            </representation>
-            <representation mediaType="application/json">
-                <doc xml:lang="EN">
-                    <xsdxt:code href="samples/volume_type_show.json" />
-                </doc>
-            </representation>
-        </response>
-    </method>
+    </wadl:doc>
+    
+    <response status="200">
+      <representation mediaType="application/xml" element="raxapi:volume_type">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/volume_type_show.xml" />
+	</wadl:doc>
+      </representation>
+      <representation mediaType="application/json">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/volume_type_show.json" />
+	</wadl:doc>
+      </representation>
+    </response>
+  </method>
 
-    <method name="POST" id="createSnapshot">
-        <wadl:doc xmlns="http://www.w3.org/1999/xhtml" xml:lang="E" 
-            title="Create Snapshot">
-            <p class="shortdesc" xmlns="http://www.w3.org/1999/xhtml">Create a Snapshot.</p>
-        </wadl:doc>
-        
-        <doc><p xmlns="http://www.w3.org/1999/xhtml">
-            Creating a snapshot makes a point-in-time copy of the
-            volume. All writes to the volume should be flushed <i>before</i>
-            creating the snapshot, either by un-mounting any file systems on the
-            volume, or by detaching the volume before creating the snapshot.
-            Snapshots are incremental, so each time you create a new snapshot, you are
-            appending the incremental changes for the new snapshot to the previous
-            one. The previous snapshot is still available. Note that you can
-            create a new volume from the snapshot if desired.       
-        </p></doc>
-        <request>
-            <param name="snapshot" style="query" type="string" required="true">
-                <doc><p xmlns="http://www.w3.org/1999/xhtml">
-                    A partial representation of a snapshot used in the creation process.
-                </p>
-                </doc>
-            </param>
-            <param name="volume_id" style="query" type="string" required="true">
-                <doc><p xmlns="http://www.w3.org/1999/xhtml">
-                    The ID of the volume to snapshot.
-                </p>
-                </doc>
-            </param>
-            <param name="force" style="query" type="string" required="false">
-                <doc><p xmlns="http://www.w3.org/1999/xhtml">
-                    [True/False] Indicate whether to snapshot, even if the volume is attached. 
-                    Default==False.
-                </p>
-                </doc>
-            </param>            
-            <param name="display_name" style="query" type="string" required="false">
-                <doc><p xmlns="http://www.w3.org/1999/xhtml">
-                    Name of the snapshot. Default==None.
-                </p>
-                </doc>
-            </param>
-            <param name="display_description" style="query" type="string" required="false">
-                <doc><p xmlns="http://www.w3.org/1999/xhtml">
-                    Description of snapshot. Default==None.
-                </p>
-                </doc>
-            </param>
-            
-            
-            <representation mediaType="application/xml" element="raxapi:snapshot">
-                <doc xml:lang="EN">
-                    <xsdxt:code href="samples/snapshot_create.xml" />
-                </doc>
-            </representation>
-            <representation mediaType="application/json">
-                <doc xml:lang="EN">
-                    <xsdxt:code href="samples/snapshot_create.json" />
-                </doc>
-            </representation>
-        </request>
-        <response status="201">
-            <representation mediaType="application/xml" element="raxapi:snapshot">
-                <doc xml:lang="EN">
-                    <xsdxt:code href="samples/snapshot_show.xml" />
-                </doc>
-            </representation>
-            <representation mediaType="application/json">
-                <doc xml:lang="EN">
-                    <xsdxt:code href="samples/snapshot_show.json" />
-                </doc>
-            </representation>
-        </response>
-    </method>
+  <method name="POST" id="createSnapshot">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="en" 
+	      title="Create Snapshot">
+      <para role="shortdesc">Create a Snapshot.</para>
+    </wadl:doc>
+    
+    <wadl:doc xmlns="http://docbook.org/ns/docbook">
+      <para>Creating a snapshot makes a point-in-time copy of the
+      volume. All writes to the volume should be flushed <emphasis>before</emphasis>
+      creating the snapshot, either by un-mounting any file systems on the
+      volume, or by detaching the volume before creating the snapshot.
+      Snapshots are incremental, so each time you create a new snapshot, you are
+      appending the incremental changes for the new snapshot to the previous
+      one. The previous snapshot is still available. Note that you can
+      create a new volume from the snapshot if desired.</para>
+    </wadl:doc>
+    <request>
+      <param name="snapshot" style="query" type="string" required="true">
+	<wadl:doc xmlns="http://docbook.org/ns/docbook"><para>
+	  A partial representation of a snapshot used in the creation process.
+	</para>
+	</wadl:doc>
+      </param>
+      <param name="volume_id" style="query" type="string" required="true">
+	<wadl:doc xmlns="http://docbook.org/ns/docbook"><para>
+	  The ID of the volume to snapshot.
+	</para>
+	</wadl:doc>
+      </param>
+      <param name="force" style="query" type="string" required="false">
+	<wadl:doc xmlns="http://docbook.org/ns/docbook"><para>
+	  [True/False] Indicate whether to snapshot, even if the volume is attached. 
+	  Default==False.
+	</para>
+	</wadl:doc>
+      </param>            
+      <param name="display_name" style="query" type="string" required="false">
+	<wadl:doc xmlns="http://docbook.org/ns/docbook"><para>
+	  Name of the snapshot. Default==None.
+	</para>
+	</wadl:doc>
+      </param>
+      <param name="display_description" style="query" type="string" required="false">
+	<wadl:doc xmlns="http://docbook.org/ns/docbook"><para>
+	  Description of snapshot. Default==None.
+	</para>
+	</wadl:doc>
+      </param>
+      
+      
+      <representation mediaType="application/xml" element="raxapi:snapshot">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/snapshot_create.xml" />
+	</wadl:doc>
+      </representation>
+      <representation mediaType="application/json">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/snapshot_create.json" />
+	</wadl:doc>
+      </representation>
+    </request>
+    <response status="201">
+      <representation mediaType="application/xml" element="raxapi:snapshot">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/snapshot_show.xml" />
+	</wadl:doc>
+      </representation>
+      <representation mediaType="application/json">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/snapshot_show.json" />
+	</wadl:doc>
+      </representation>
+    </response>
+  </method>
 
-    <method name="GET" id="getSnapshotsSimple">
-        <wadl:doc xmlns="http://www.w3.org/1999/xhtml" xml:lang="E" 
-            title="List Snapshots">
-            <p xmlns="http://www.w3.org/1999/xhtml">
-                View a list of simple Snapshot entities.
-            </p>
-        </wadl:doc>
-        <response status="200">
-            <representation mediaType="application/xml" element="raxapi:snapshots">
-                <doc xml:lang="EN">
-                    <xsdxt:code href="samples/snapshot_list_simple.xml" />
-                </doc>
-            </representation>
-            <representation mediaType="application/json">
-                <doc xml:lang="EN">
-                    <xsdxt:code href="samples/snapshot_list_simple.json" />
-                </doc>
-            </representation>
-        </response>
-    </method>
+  <method name="GET" id="getSnapshotsSimple">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="en" 
+	      title="List Snapshots">
+      <para>View a list of simple Snapshot entities.</para>
+    </wadl:doc>
+    <response status="200">
+      <representation mediaType="application/xml" element="raxapi:snapshots">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/snapshot_list_simple.xml" />
+	</wadl:doc>
+      </representation>
+      <representation mediaType="application/json">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/snapshot_list_simple.json" />
+	</wadl:doc>
+      </representation>
+    </response>
+  </method>
 
-    <method name="GET" id="getSnapshotsDetail">
-        <wadl:doc xmlns="http://www.w3.org/1999/xhtml" xml:lang="E" 
-            title="List Snapshots (Detailed)">
-            <p xmlns="http://www.w3.org/1999/xhtml">
-                View a list of detailed Snapshot entities.
-            </p>
-        </wadl:doc>
-        <response status="200">
-            <representation mediaType="application/xml" element="raxapi:snapshots">
-                <doc xml:lang="EN">
-                    <xsdxt:code href="samples/snapshot_list_simple.xml" />
-                </doc>
-            </representation>
-            <representation mediaType="application/json">
-                <doc xml:lang="EN">
-                    <xsdxt:code href="samples/snapshot_list_simple.json" />
-                </doc>
-            </representation>
-        </response>
-    </method>
+  <method name="GET" id="getSnapshotsDetail">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="en" 
+	      title="List Snapshots (Detailed)">
+      <para xmlns="http://docbook.org/ns/docbook">View a list of detailed Snapshot entities.</para>
+    </wadl:doc>
+    <response status="200">
+      <representation mediaType="application/xml" element="raxapi:snapshots">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/snapshot_list_simple.xml" />
+	</wadl:doc>
+      </representation>
+      <representation mediaType="application/json">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/snapshot_list_simple.json" />
+	</wadl:doc>
+      </representation>
+    </response>
+  </method>
 
+  <method name="GET" id="getSnapshot">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="en" 
+	      title="Show Snapshot">
+      <para xmlns="http://docbook.org/ns/docbook">
+	View all information about a single Snapshot.
+      </para>
+    </wadl:doc>
+    <response status="200">
+      <representation mediaType="application/xml" element="raxapi:snapshot">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/snapshot_show.xml" />
+	</wadl:doc>
+      </representation>
+      <representation mediaType="application/json">
+	<wadl:doc xml:lang="en">
+	  <xsdxt:code href="samples/snapshot_show.json" />
+	</wadl:doc>
+      </representation>
+    </response>
+  </method>
 
-    <method name="GET" id="getSnapshot">
-        <wadl:doc xmlns="http://www.w3.org/1999/xhtml" xml:lang="E" 
-            title="Show Snapshot">
-            <p xmlns="http://www.w3.org/1999/xhtml">
-                View all information about a single Snapshot.
-            </p>
-        </wadl:doc>
-        <response status="200">
-            <representation mediaType="application/xml" element="raxapi:snapshot">
-                <doc xml:lang="EN">
-                    <xsdxt:code href="samples/snapshot_show.xml" />
-                </doc>
-            </representation>
-            <representation mediaType="application/json">
-                <doc xml:lang="EN">
-                    <xsdxt:code href="samples/snapshot_show.json" />
-                </doc>
-            </representation>
-        </response>
-    </method>
-
-    <method name="DELETE" id="deleteSnapshot">
-        <wadl:doc xmlns="http://www.w3.org/1999/xhtml" xml:lang="E" 
-            title="Delete Snapshot">
-            <p xmlns="http://www.w3.org/1999/xhtml">Delete a single Snapshot.</p>
-        </wadl:doc>
-        <response status="202" />
-    </method>
+  <method name="DELETE" id="deleteSnapshot">
+    <wadl:doc xmlns="http://docbook.org/ns/docbook" xml:lang="en" 
+	      title="Delete Snapshot">
+      <para xmlns="http://docbook.org/ns/docbook">Delete a single Snapshot.</para>
+    </wadl:doc>
+    <response status="202" />
+  </method>
 
 </application>

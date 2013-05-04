@@ -13,7 +13,7 @@
       <plugin>
 	<groupId>com.rackspace.cloud.api</groupId>
 	<artifactId>clouddocs-maven-plugin</artifactId>
-	<version>1.7.3-SNAPSHOT</version>
+	<version>1.8.1-SNAPSHOT</version>
 	<executions>
 	  <execution>
 	    <goals>
@@ -28,6 +28,12 @@
 	  <feedbackEmail>your.name@rackspace.com</feedbackEmail>	  
 	  <branding>rackspace</branding>
 	  <showXslMessages>true</showXslMessages>
+	  <!-- 
+	       Normally we wouldn't set this, but setting it makes the
+	       links to pdfs work even when not deploy on
+	       docs.rackspace.com 
+	  -->
+	  <useLatestSuffixInPdfUrl>0</useLatestSuffixInPdfUrl>	  
 	</configuration>
       </plugin>
       <plugin>
