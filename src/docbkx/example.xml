@@ -27,7 +27,8 @@
             include links into the body of the document. From this
             element we generate the list in <xref
               linkend="change_history"/> as well as the atom feed for
-            the document an <link xlink:href="../atom.xml">atom feed</link> for the document.
+            the document an <link xlink:href="../atom.xml">atom feed</link> for the document. 
+            I can change your doc!!
               <itemizedlist spacing="compact">
               <listitem>
                 <para>Itemized lists are useful constructs for improving the readability of documents.</para>
