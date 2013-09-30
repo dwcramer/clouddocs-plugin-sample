@@ -8,12 +8,19 @@
   <version>1.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>Example API Docs</name>
+
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>7</version>
+  </parent>
+
   <build>
     <plugins>
       <plugin>
         <groupId>com.rackspace.cloud.api</groupId>
         <artifactId>olink-maven-plugin</artifactId>
-        <version>1.1-SNAPSHOT</version>
+        <version>1.1.0</version>
         <executions>
           <execution>
 	    <phase>initialize</phase>
@@ -26,7 +33,7 @@
       <plugin>
 	<groupId>com.rackspace.cloud.api</groupId>
 	<artifactId>clouddocs-maven-plugin</artifactId>
-	<version>1.9.3-SNAPSHOT</version>
+	<version>1.11.0</version>
 	<executions>
 	  <execution>
 	    <goals>
@@ -70,26 +77,4 @@
       </plugin>
     </plugins>
   </build>
-  <profiles>
-    <profile>
-      <id>Rackspace Research Repositories</id>
-      <activation>
-	<activeByDefault>true</activeByDefault>
-      </activation>
-      <repositories>
-	<repository>
-	  <id>rackspace-research</id>
-	  <name>Rackspace Research Repository</name>
-	  <url>http://maven.research.rackspacecloud.com/content/groups/public/</url>
-	</repository>
-      </repositories>
-      <pluginRepositories>
-	<pluginRepository>
-	  <id>rackspace-research</id>
-	  <name>Rackspace Research Repository</name>
-	  <url>http://maven.research.rackspacecloud.com/content/groups/public/</url>
-	</pluginRepository>
-      </pluginRepositories>
-    </profile>
-  </profiles>
 </project>
