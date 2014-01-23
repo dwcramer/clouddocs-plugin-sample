@@ -123,9 +123,11 @@
       </para>
     </section>
   </preface>
-  <chapter xml:id="Overview">
-    <title>Introduction</title>
-    <!--You can use the <?dbhtml stop-chunking?> processing instruction to prevent a chapter or section for chunking furhter in the html output. -->
+  <part xml:id="part1">
+    <title>foo</title>
+    <chapter xml:id="Overview">
+      <title>Introduction</title>
+      <!--You can use the <?dbhtml stop-chunking?> processing instruction to prevent a chapter or section for chunking furhter in the html output. -->
     <para>This would normally be a good place to introduce the product
       and API, but in this example document we'll look at some
       commonly used constructs. The following an image with a title
@@ -459,4 +461,5 @@ contains foo-feature in your pom.xml file.&lt;/para></programlisting>In
       <resources xmlns="http://wadl.dev.java.net/2009/02" href="../wadl/example.wadl"/>
       
     </chapter>
+  </part>
 </book>
